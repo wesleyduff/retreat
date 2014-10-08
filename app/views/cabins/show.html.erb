@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cabin.name %>
+</p>
+
+<p>
+  <strong>Available:</strong>
+  <%= @cabin.available %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @cabin.gender %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @cabin.description %>
+</p>
+
+<p>
+  <strong>Max:</strong>
+  <%= @cabin.max %>
+</p>
+
+<%= link_to 'Edit', edit_cabin_path(@cabin) %> |
+<%= link_to 'Back', cabins_path %>

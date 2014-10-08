@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  available: false
+  description: MyText
+  max: 1
+
+two:
+  name: MyString
+  available: false
+  description: MyText
+  max: 1

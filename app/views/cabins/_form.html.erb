@@ -1,0 +1,36 @@
+<%= form_for(@cabin) do |f| %>
+  <% if @cabin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cabin.errors.count, "error") %> prohibited this cabin from being saved:</h2>
+
+      <ul>
+      <% @cabin.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field input-group input-group-lg">
+    <span class="input-group-addon">@</span>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.select :gender, @cabinTypes %>
+  </div>
+  <div class="field input_group">
+    <%= f.check_box :available %>  <%= f.label :available %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :max %><br>
+    <%= f.number_field :max %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-success" %>
+  </div>
+<% end %>
