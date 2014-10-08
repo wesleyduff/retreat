@@ -1,4 +1,8 @@
 Workspace::Application.routes.draw do
+  resources :people
+
+  resources :roles
+
   resources :families
 
   get "welcome/index"
