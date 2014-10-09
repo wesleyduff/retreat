@@ -8,7 +8,8 @@
                     "command": "",
                     "name": "Ruby on Rails",
                     "default": true,
-                    "debug": true
+                    "debug": true,
+                    "env": {}
                 }
             },
             "@inited": "true"
@@ -36,7 +37,7 @@
     },
     "build": {
         "@path": "/.c9/builders",
-        "@saveall": "true",
+        "@saveall": true,
         "@builder": "auto"
     }
 }

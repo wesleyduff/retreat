@@ -1,6 +1,9 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
   before_action :get_cabins, only: [:edit, :update, :new]
+  before_action :get_roles, only: [:edit, :update, :new]
+  before_action :get_genders, only: [:edit, :update, :new]
+  before_action :get_families, only: [:edit, :update, :new]
   # GET /people
   # GET /people.json
   def index
@@ -25,10 +28,22 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(person_params)
-
+    cabin = Cabin.find(@person.cabin_id);
+    if(cabin.people_count < cabin.max)
+      cabin.people_count = cabin.people_count + 1;
+      if cabin.save
+        flash[:notice] = "& person saved to cabin"
+      else 
+        @person.cabin_id = nil;
+        flash[:notice] = "but the person could not be added to this cabin. Check the cabin and try again."
+      end
+    else 
+      @person.cabin_id = nil;
+      flash[:notice] = "but the cabin was full"
+    end
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person, notice: 'Person was successfully created.' }
+        format.html { redirect_to @person, notice: "Person saved successfully" + notice}
         format.json { render action: 'show', status: :created, location: @person }
       else
         format.html { render action: 'new' }
@@ -41,8 +56,21 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1.json
   def update
     respond_to do |format|
+      cabin = Cabin.find(@person.cabin_id);
+      if(cabin.people_count < cabin.max)
+        cabin.people_count = cabin.people_count + 1;
+        if cabin.save
+          flash[:notice] = "& person saved to cabin"
+        else 
+          @person.cabin_id = nil;
+          flash[:notice] = "but the person could not be added to this cabin. Check the cabin and try again."
+        end
+      else 
+        @person.cabin_id = nil;
+        flash[:notice] = "but the cabin was full"
+      end
       if @person.update(person_params)
-        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
+        format.html { redirect_to @person, notice: 'Person was successfully updated' + notice }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -63,20 +91,53 @@ class PeopleController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions
+    def check_cabin_and_assing_if_available(person)
+      cabin = Cabin.find(person.cabin_id);
+      if(cabin.people_count < cabin.max)
+        cabin.people_count = cabin.people_count + 1;
+        if cabin.save
+          flash[:notice] = "& person saved to cabin"
+        else 
+          person.cabin_id = nil;
+          flash[:notice] = "but the person could not be added to this cabin. Check the cabin and try again."
+        end
+      else 
+        person.cabin_id = nil;
+        flash[:notice] = "but the cabin was full"
+      end
+      
+    end
+    def get_families 
+      @fams = [['None selected', 0]]
+      familiesList = Family.find(:all)
+      familiesList.each do |fam|
+        @fams.push([fam.name, fam.id])
+      end
+    end
+    def get_genders 
+      @genders = [['Male', 'male'], ['Female', 'female']]
+    end
     def get_cabins
-      @cabins = [];
-      cabinList = nil;
-      cabinList = Cabin.find(:all);
+      @cabins = [['None selected', 0]]
+      cabinList = Cabin.find(:all)
       cabinList.each do |cabin|
         @cabins.push([cabin.name, cabin.id])
       end
     end
+    def get_roles
+      @roles = [['None selected', 0]]
+      rolesList = Role.find(:all)
+      rolesList.each do |role|
+        @roles.push([role.title, role.id])
+      end
+    end
+    
     def set_person
       @person = Person.find(params[:id])
     end
-
+   
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:name, :lastname, :firstname, :gender, :age, :cabing, :role)
+      params.require(:person).permit(:name, :lastname, :firstname, :gender, :age, :family_id, :cabin_id, :role_id)
     end
 end

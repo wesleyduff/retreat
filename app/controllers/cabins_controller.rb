@@ -12,6 +12,10 @@ class CabinsController < ApplicationController
   # GET /cabins/1.json
   def show
   end
+  
+  def people
+    @cabin = Cabin.find(params[:id])
+  end
 
   # GET /cabins/new
   def new
@@ -26,7 +30,6 @@ class CabinsController < ApplicationController
   # POST /cabins.json
   def create
     @cabin = Cabin.new(cabin_params)
-
     respond_to do |format|
       if @cabin.save
         format.html { redirect_to @cabin, notice: 'Cabin was successfully created.' }

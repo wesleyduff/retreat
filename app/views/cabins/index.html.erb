@@ -8,7 +8,7 @@
       <th>Gender</th>
       <th>Description</th>
       <th>Max</th>
-      <th></th>
+      <th>Number of Occupants</th>
       <th></th>
       <th></th>
     </tr>
@@ -22,6 +22,9 @@
         <td><%= cabin.gender %></td>
         <td><%= cabin.description %></td>
         <td><%= cabin.max %></td>
+        <td>
+          <%= link_to cabin.people_count, controller: "cabins", action: "people", id: cabin %>
+        </td>
         <td><%= link_to 'Show', cabin %></td>
         <td><%= link_to 'Edit', edit_cabin_path(cabin) %></td>
         <td><%= link_to 'Destroy', cabin, method: :delete, data: { confirm: 'Are you sure?' } %></td>

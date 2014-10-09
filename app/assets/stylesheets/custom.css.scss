@@ -1,0 +1,42 @@
+@import "bootstrap";
+
+/* --- Variables */
+$gray: #e7e7e7;
+
+/* --- mixins */
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin box-sizing($style) {
+    -webkit-box-sizing: $style;
+       -moz-box-sizing: $style;
+        -ms-box-sizing: $style;
+            box-sizing: $style;
+}
+
+section, div, article {
+    @include box-sizing(border-box)
+}
+
+section:first-of-type {
+    position:relative;
+} 
+form[role=search] {
+    background-color:$gray;
+    position:absolute;
+    padding:10px;
+    width:30%;
+    top:-19px;
+    right:0;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-bottom-left-radius: 10px;
+    -ms-border-bottom-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    
+    button[type="submit"]{
+        width:100%;
+    }
+}

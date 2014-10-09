@@ -8,6 +8,7 @@
       <th>Firstname</th>
       <th>Gender</th>
       <th>Age</th>
+      <th>Family</th>
       <th>Cabing</th>
       <th>Role</th>
       <th></th>
@@ -24,8 +25,15 @@
         <td><%= person.firstname %></td>
         <td><%= person.gender %></td>
         <td><%= person.age %></td>
-        <td><%= person.cabing %></td>
-        <td><%= person.role %></td>
+        <td><%= person.family.name %></td>
+        <td>
+        <% if person.cabin != nil %>
+          <%= person.cabin.name %>
+        <% else %>
+          <div class="warning">Person needs to be added to a cabin</div>
+        <% end %>
+        </td>
+        <td><%= person.role.title %></td>
         <td><%= link_to 'Show', person %></td>
         <td><%= link_to 'Edit', edit_person_path(person) %></td>
         <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>

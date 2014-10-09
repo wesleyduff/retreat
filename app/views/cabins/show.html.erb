@@ -25,5 +25,10 @@
   <%= @cabin.max %>
 </p>
 
+<p>
+  <strong>Total Number of Occupants:</strong>
+  <%= @cabin.people_count %>
+</p>
+
 <%= link_to 'Edit', edit_cabin_path(@cabin) %> |
 <%= link_to 'Back', cabins_path %>

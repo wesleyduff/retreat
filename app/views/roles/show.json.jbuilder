@@ -1,1 +1,1 @@
-json.extract! @role, :id, :type, :description, :created_at, :updated_at
+json.extract! @role, :id, :title, :description, :created_at, :updated_at

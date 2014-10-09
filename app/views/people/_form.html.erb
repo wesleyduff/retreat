@@ -10,11 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
   <div class="field">
     <%= f.label :lastname %><br>
     <%= f.text_field :lastname %>
@@ -25,12 +20,20 @@
   </div>
   <div class="field">
     <%= f.label :gender %><br>
-    <%= f.text_field :gender %>
+    <%= f.select :gender, @genders %>
   </div>
   <div class="field">
     <%= f.label :age %><br>
-    <%= f.text_field :age %>
+    <%= f.number_field :age %>
   </div>
+  <% if @fams.empty? %>
+    <div>No familes have been added</div>
+  <% else %>
+    <div class="field">
+      <%= f.label :family_id %><br>
+      <%= f.select :family_id, @fams %>
+    </div>
+  <% end %>
   <% unless @cabins.empty? %>
     <div class="field">
       <%= f.label :cabin_id %><br/>
@@ -39,7 +42,7 @@
   <% end %>
   <div class="field">
     <%= f.label :role_id %><br>
-    <%= f.text_field :role_id %>
+    <%= f.select :role_id, @roles %>
   </div>
   <div class="actions">
     <%= f.submit %>

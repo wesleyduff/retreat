@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
 
 <p>
   <strong>Name:</strong>
@@ -26,13 +28,22 @@
 </p>
 
 <p>
-  <strong>Cabing:</strong>
-  <%= @person.cabing %>
+  <strong>Family:</strong>
+  <%= @person.family.name %>
+</p>
+
+<p>
+  <strong>Cabin:</strong>
+  <% if @person.cabin != nil %>
+    <%= @person.cabin.name %>
+  <% else %>
+    <%= @person.firstname %> was not added to a cabin
+  <% end %>
 </p>
 
 <p>
   <strong>Role:</strong>
-  <%= @person.role %>
+  <%= @person.role.title %>
 </p>
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
