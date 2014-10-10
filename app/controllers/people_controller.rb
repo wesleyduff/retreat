@@ -120,9 +120,10 @@ class PeopleController < ApplicationController
     def get_cabins
       @cabins = [['None selected', 0]]
       cabinList = Cabin.all.where(["people_count < max"]) #only show cabin that are not full
-      puts "...................... /////////////// "
-      cabinList.each do |cabin|
-        @cabins.push([cabin.name, cabin.id])
+      unless(cabinList.empty?) #add each cabin to the list if there is a cabin in our returned array
+        cabinList.each do |cabin|
+          @cabins.push([cabin.name, cabin.id])
+        end
       end
     end
     def get_roles
