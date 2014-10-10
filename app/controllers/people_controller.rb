@@ -109,7 +109,7 @@ class PeopleController < ApplicationController
     end
     def get_families 
       @fams = [['None selected', 0]]
-      familiesList = Family.find(:all)
+      familiesList = Family.all
       familiesList.each do |fam|
         @fams.push([fam.name, fam.id])
       end
@@ -119,14 +119,15 @@ class PeopleController < ApplicationController
     end
     def get_cabins
       @cabins = [['None selected', 0]]
-      cabinList = Cabin.find(:all)
+      cabinList = Cabin.all.where(["people_count < max"]) #only show cabin that are not full
+      puts "...................... /////////////// "
       cabinList.each do |cabin|
         @cabins.push([cabin.name, cabin.id])
       end
     end
     def get_roles
       @roles = [['None selected', 0]]
-      rolesList = Role.find(:all)
+      rolesList = Role.all
       rolesList.each do |role|
         @roles.push([role.title, role.id])
       end

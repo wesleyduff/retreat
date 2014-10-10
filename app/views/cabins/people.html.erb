@@ -1,13 +1,13 @@
+<aside>"
+    <%= link_to "back", cabins_path, class: "btn btn-success" %>
+</aside>
 <section>
 <h1>People assign to <%= @cabin.name %></h1>
-<aside>
-    <%= link_to "back", cabins_path %>
-</aside>
-<table>
+<ul class="list-group">
     <% @cabin.people.each do |person| %>
-    <tr>
-        <td><%= person.firstname + person.lastname %></td>
-    </tr>
+    <li class="list-group-item">
+        <%= person.firstname + person.lastname %></td>
+    </li>
     <% end %>
-</table>
+</ul>
 </section>
