@@ -28,11 +28,6 @@
 </p>
 
 <p>
-  <strong>Family:</strong>
-  <%= @person.family.name %>
-</p>
-
-<p>
   <strong>Cabin:</strong>
   <% if @person.cabin != nil %>
     <%= @person.cabin.name %>
@@ -41,10 +36,14 @@
   <% end %>
 </p>
 
-<p>
-  <strong>Role:</strong>
-  <%= @person.role.title %>
-</p>
+<% if @person.role != nil %> 
+  <p>
+    <strong>Role:</strong>
+    <%= @person.role.title %>
+  </p>
+<% else %>
+  <p>No role</p>
+<% end %>
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>

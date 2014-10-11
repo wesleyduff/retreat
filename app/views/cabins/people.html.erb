@@ -4,17 +4,27 @@
 <section class="col-xs-12 col-md-9">
     <h1>People assign to <%= @cabin.name %></h1>
     <ul class="list-group">
-        <li>
-            <span>Name</span>
-            <span>Age</span>
-            <button class="btn btn-danger">Remove all from cabin</button>
-        </li>
-        <% @cabin.people.each do |person| %>
-        <li class="list-group-item">
-            <span><%= person.firstname + person.lastname %></span>
-            <span><%= person.age %></span>
-            <button class="btn btn-warning">Remove from cabin</button>
-        </li>
+    
+        <% unless @cabin.people.empty? %>
+            <li class="row">
+                <span class="col-xs-4">Name</span>
+                <span class="col-xs-4">Age</span>
+                <button class="btn btn-danger col-xs-4">Remove all from cabin</button>
+            </li>
+        <% end %>
+        
+        <% unless @cabin.people.empty?
+            @cabin.people.each do |person| %>
+                <li class="list-group-item row">
+                    <span class="col-xs-4">
+                        <%= link_to "#{person.lastname}, #{person.firstname}", person_path(person) %>
+                    </span>
+                    <span class="col-xs-4"><%= person.age %></span>
+                    <button class="btn btn-warning col-xs-4">Remove from cabin</button>
+                </li>
+        <%  end
+        else %>
+            <li class="list-group-item margin-offset-top-sm">No one is assigned to this cabin</li>
         <% end %>
     </ul>
 </section>

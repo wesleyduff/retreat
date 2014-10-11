@@ -1,47 +1,55 @@
-<h1>Listing people</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Lastname</th>
-      <th>Firstname</th>
-      <th>Gender</th>
-      <th>Age</th>
-      <th>Family</th>
-      <th>Cabing</th>
-      <th>Role</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @people.each do |person| %>
-      <tr>
-        <td><%= person.name %></td>
-        <td><%= person.lastname %></td>
-        <td><%= person.firstname %></td>
-        <td><%= person.gender %></td>
-        <td><%= person.age %></td>
-        <td><%= person.family.name %></td>
-        <td>
-        <% if person.cabin != nil %>
-          <%= person.cabin.name %>
-        <% else %>
-          <div class="warning">Person needs to be added to a cabin</div>
-        <% end %>
-        </td>
-        <td><%= person.role.title %></td>
-        <td><%= link_to 'Show', person %></td>
-        <td><%= link_to 'Edit', edit_person_path(person) %></td>
-        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Person', new_person_path %>
+ <div class="col-xs-12">
+  <%= link_to 'New Person', new_person_path, class: "btn btn-success" %>
+</div>
+<section class="col-xs-12 col-md-9">
+    <h1>List of People</h1>
+       
+        <ul class="list-group">
+          <% unless @people.empty? %>
+                <li class="row">
+                    <span class="col-xs-1">Paid</span>
+                    <span class="col-xs-2">Name</span>
+                    <span class="col-xs-2">Gender</span>
+                    <span class="col-xs-1">Age</span>
+                    <span class="col-xs-2">Cabin</span>
+                    <span class="col-xs-2">Role</span>
+                    <button class="btn btn-danger col-xs-2">Remove all people</button>
+                </li>
+            <% end %>
+           <% unless @people.empty?
+                @people.each do |person| %>
+                    <li class="list-group-item row">
+                        <span class="col-xs-1"><span class="checkbox">v</span></span>
+                        <span class="col-xs-2"><%= person.lastname + ", " + person.firstname %></span>
+                        <span class="col-xs-2"><%= person.gender %></span>
+                        <span class="col-xs-1"><%= person.age %></span>
+                        <span class="col-xs-2">
+                          <% if person.cabin != nil %>
+                            <%= person.cabin.name %>
+                          <% else %>
+                            <span class="warning">Person needs to be added to a cabin</span>
+                          <% end %>
+                        </span>
+                        <span class="col-xs-2">
+                          <% if person.role != nil %>
+                            <%= person.role.title %>
+                          <% else %>
+                            No role
+                          <% end %>
+                        </span>
+                        <span class="col-xs-2">
+                          <%= link_to 'Show', person, class: "btn btn-info", type: "button" %>
+                          <%= link_to 'Edit', edit_person_path(person), class: "btn btn-warning", type: "button" %>
+                          <%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", type: "button" %>
+                        </span>
+                    </li>
+            <%  end
+            else %>
+                <li class="list-group-item margin-offset-top-sm">No one has been added yet.</li>
+            <% end %>
+        </ul>
+    </section>
+    <aside class="hidden-xs col-md-3">
+       side content
+    </aside>
+</section>

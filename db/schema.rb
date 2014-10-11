@@ -11,40 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009143952) do
+ActiveRecord::Schema.define(version: 20141008221508) do
 
   create_table "cabins", force: true do |t|
-    t.string   "name"
-    t.boolean  "available"
+    t.string   "name",                        null: false
+    t.boolean  "available",    default: true
     t.text     "description"
-    t.integer  "max"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "gender"
+    t.integer  "max",          default: 0
+    t.text     "gender",                      null: false
     t.integer  "people_count", default: 0
-  end
-
-  create_table "families", force: true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "people", force: true do |t|
     t.string   "name"
-    t.string   "lastname"
-    t.string   "firstname"
-    t.string   "gender"
-    t.integer  "age"
+    t.string   "lastname",   null: false
+    t.string   "firstname",  null: false
+    t.string   "gender",     null: false
+    t.integer  "age",        null: false
     t.integer  "cabin_id"
     t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "family_id"
   end
 
   create_table "roles", force: true do |t|
-    t.string   "title"
+    t.string   "title",       null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"

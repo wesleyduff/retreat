@@ -26,14 +26,6 @@
     <%= f.label :age %><br>
     <%= f.number_field :age %>
   </div>
-  <% if @fams.empty? %>
-    <div>No familes have been added</div>
-  <% else %>
-    <div class="field">
-      <%= f.label :family_id %><br>
-      <%= f.select :family_id, @fams %>
-    </div>
-  <% end %>
   <% unless @cabins.empty? %>
     <div class="field">
       <%= f.label :cabin_id %><br/>

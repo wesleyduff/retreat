@@ -1,21 +1,3 @@
 // Place all the styles related to the People controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-li {
- padding:10px;
- margin-bottom:10px;
-}
-ul.list-group{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    li {
-        display:flex;
-        span {
-            flex:1
-        }
-        button {
-            flex:1;
-        }
-    }
-}
