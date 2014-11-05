@@ -7,6 +7,14 @@ class CabinsController < ApplicationController
   def index
     @cabins = Cabin.all
   end
+  
+  def men
+     @cabins = Cabin.all.where(["gender = 'male'"])
+  end
+  
+  def women
+    @cabins = Cabin.all.where(["gender = 'female'"])
+  end
 
   # GET /cabins/1
   # GET /cabins/1.json

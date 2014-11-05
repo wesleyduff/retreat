@@ -2,7 +2,7 @@
   <%= link_to 'New Cabin', new_cabin_path, class: "btn btn-success" %>
 </div>
 <section class="col-xs-12 col-md-9">
-    <h1>Listing of All Cabins</h1>
+    <h1>Listing of Women Cabins</h1>
        
         <ul class="list-group">
           <% unless @cabins.empty? %>
@@ -31,7 +31,7 @@
                     </li>
             <%  end
             else %>
-                <li class="list-group-item margin-offset-top-sm">No one is assigned to this cabin</li>
+                <li class="list-group-item margin-offset-top-sm">There are no women cabins</li>
             <% end %>
         </ul>
     </section>
@@ -39,4 +39,3 @@
        side content
     </aside>
 </section>
-

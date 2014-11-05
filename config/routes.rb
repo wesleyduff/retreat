@@ -7,6 +7,8 @@ Workspace::Application.routes.draw do
 
   get "welcome/index"
   get '/cabins/:id/people', to: 'cabins#people'
+  get '/cabins/men', to: 'cabins#men', as: 'menscabins'
+  get '/cabins/women', to: 'cabins#women', as: 'femalecabins'
   resources :cabins
 
   # The priority is based upon order of creation: first created -> highest priority.

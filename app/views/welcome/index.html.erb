@@ -1,2 +1,82 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<div id='outer'>
+    <div id="main" class="graphs">
+        <a href="/cabins/men" id="mensCabins" class="well">
+            Percentage of Mens Cabins that are Full
+        </a>
+        <a href="/cabins/women" id="femaleCabins" class="well">
+            Percentage of Mens Cabins that are Full
+        </a>
+        <a href="/cabins" id="allCabins" class="well">
+           Percentage of Mens Cabins that are Full
+        </a>
+    </div>
+</div>
+
+
+
+<script language="JavaScript">
+
+    var div1=d3.select(document.getElementById('mensCabins'));
+    var div2=d3.select(document.getElementById('femaleCabins'));
+    var div3=d3.select(document.getElementById('allCabins'));
+   // var div4=d3.select(document.getElementById('div4'));
+
+    start();
+
+    function onClick1() {
+       // deselect();
+       // div1.attr("class","selectedRadial");
+    }
+
+    function onClick2() {
+      //  deselect();
+       // div2.attr("class","selectedRadial");
+    }
+
+    function onClick3() {
+      //  deselect();
+      //  div3.attr("class","selectedRadial");
+    }
+
+    function labelFunction(val,min,max) {
+
+    }
+
+    function deselect() {
+        div1.attr("class","radial");
+        div2.attr("class","radial");
+        div3.attr("class","radial");
+    }
+
+    function start() {
+
+        var rp1 = radialProgress(document.getElementById('mensCabins'))
+                .label("Men Cabins")
+                .onClick(onClick1)
+                .diameter(150)
+                .value(78)
+                .render();
+
+        var rp2 = radialProgress(document.getElementById('femaleCabins'))
+                .label("Female Cabins")
+                .onClick(onClick2)
+                .diameter(150)
+                .value(132)
+                .render();
+
+        var rp3 = radialProgress(document.getElementById('allCabins'))
+                .label("All Cabins")
+                .onClick(onClick3)
+                .diameter(150)
+                .minValue(100)
+                .maxValue(200)
+                .value(150)
+                .render();
+
+    }
+
+
+
+
+
+</script>

@@ -74,3 +74,8 @@ form {
 h1 { text-align:center;}
 select, textarea {width:100%};
 select, textarea, input[type=number] { padding:10px; }
+
+/* ------ OVER WRITES ------------ */
+.navbar-header {
+  background:#D17519;
+}

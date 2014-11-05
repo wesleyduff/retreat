@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require d3.min
+//= require radialProgress
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
